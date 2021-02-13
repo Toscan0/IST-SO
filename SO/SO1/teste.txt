@@ -1,0 +1,22 @@
+simular 0
+simular 1
+simular 0
+sair
+
+ /* Imprime o estado e o pid de cada processo*/
+    printf("i-banco vai iniciar\n--\n");
+    for(i = 0; i < process; i++){
+        /*aux1 = wait(&estado);*/
+        aux2 = estado;
+        if(WIFEXITED(aux2) == 1){
+            if(g_sair == 1 && g_sair_agora == 0){
+                aux1 = wait(&estado);
+                printf("FILHO TERMINADO (PID=%d, terminou normalmente)\n", aux1);
+            }
+            else{ /* g_sair agora == 1 && g_sair == 0*/
+                /*kill(,SIGINT);*/
+                printf("FILHO TERMINADO (PID=%d, terminou abrubtamente)\n", aux1);
+            }
+        }
+    }
+    printf("--\ni-banco vai terminar\n");
